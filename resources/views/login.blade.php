@@ -70,21 +70,36 @@
   <body class="text-center">
 
 <main class="form-signin w-100 m-auto">
-  <form>
+    @if (Session::has('msg'))
+        <div class="alert alert-success">
+            <p>{{ Session::get('msg') }}</p>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+  <form method="POST" action="{{route('sqllogin.post')}}">
+    @csrf
     <h1 class="lead">Taxiade Todo Assessment</h1>
     <h1 class="h3 mb-3 fw-normal">Login</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{ old('email') }}">
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" value="{{ old('password') }}">
       <label for="floatingPassword">Password</label>
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">Are you a new user? <a href="{{route('signup.get')}}">Sign Up</a></p>
+    <p class="mt-5 mb-3 text-muted">Are you a new user? <a href="{{route('sqlsignup.get')}}">Sign Up</a></p>
   </form>
 </main>
   </body>

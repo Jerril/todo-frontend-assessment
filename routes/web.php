@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return view('welcome');
+})->name('index');
+
+Route::get('/login-sql', [AuthController::class, 'login_form'])->name('sqllogin.get');
+Route::post('/login-sql', [AuthController::class, 'login_post'])->name('sqllogin.post');
+Route::get('/signup-sql', [AuthController::class, 'signup_form'])->name('sqlsignup.get');
+Route::post('/signup-sql', [AuthController::class, 'signup_post'])->name('sqlsignup.post');
+
+// Laravel Signup
+Route::middleware('auth')->group(function() {
+    Route::get('/sql-dashboard', fn() => view('sql-dashboard'))->name('sql.dashboard');
+    Route::get('/sql-logout', [AuthController::class, 'sqlLogout'])->name('sql.logout');
 });
 
-Route::get('/login', fn() => view('login'))->name('login.get');
-
-Route::post('/login', fn() => "POST login")->name('login.post');;
-
-Route::get('/signup', fn() => view('signup'))->name('signup.get');
-
-Route::post('/signup', fn() => "POST signup")->name('signup.post');
-
-
 // TODO Routes
+Route::get('/dashboard', fn() => view('layouts.main'))->name('dashboard');
