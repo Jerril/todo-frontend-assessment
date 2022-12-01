@@ -104,8 +104,7 @@ class AuthController extends Controller
         $todos = $data['todos'];
 
         // Redirect to dashboard
-        // return redirect()->route('dashboard');
-        return view('layouts.main', compact('todos'));
+        return redirect()->route('dashboard');
     }
 
     public function signup_form()
