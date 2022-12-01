@@ -16,14 +16,15 @@
         <div class="row d-flex justify-content-center container">
             <div class="col-md-8">
               <div class="card-hover-shadow-2x mb-3 card">
-                <div class="card-header-tab card-header">
+                <div class="card-header-tab card-header d-flex justify-content-between">
                   <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                    <i class="fa fa-tasks"></i>&nbsp;Todo Lists</div>
+                    <i class="fa fa-tasks"></i>&nbsp;Todo Lists
                   </div>
                   <div>
-
+                    <a type="button" href="{{route('logout')}}" class="btn btn-primaty text-primary">Logout</a>
                   </div>
-                  <a href="{{route('logout')}}" class="text-light">Logout</a>
+                </div>
+
                 <div class="scroll-area-sm">
                     @if (Session::has('msg'))
                         <div class="alert alert-success">
@@ -96,8 +97,8 @@
                                 </div>
                             @endforeach
                             @else
-                                <div class="alert alert-warning mx-4">
-                                    <p>You don't have any ToDo yet. Create a new one using the "Add Todo" button below.</p>
+                                <div class="alert alert-warning mx-auto my-3">
+                                    <p>You don't have any ToDo currently. Create a new one using the "Add Todo" button below</p>
                                 </div>
                             @endif
                         </ul>
