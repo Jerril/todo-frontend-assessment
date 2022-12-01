@@ -14,7 +14,7 @@
     <main class="my-4">
         <a href="{{route('sqlsignup.get')}}">Laravel Authentication</a>
         <br/>
-        <a href="">Node Authentication</a>
+        <a href="{{route('signup.get')}}">Node Authentication</a>
     </main>
 </body>
 </html>

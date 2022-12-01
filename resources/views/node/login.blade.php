@@ -84,10 +84,10 @@
             </ul>
         </div>
     @endif
-  <form method="POST" action="{{route('sqllogin.post')}}">
+  <form method="POST" action="{{route('login.post')}}">
     @csrf
     <h1 class="lead">Taxiade Todo Assessment</h1>
-    <h1 class="h3 mb-3 fw-normal">Login <small class="text-muted" style="font-size:14px">with laravel/sql</small></h1>
+    <h1 class="h3 mb-3 fw-normal">Login <small class="text-muted" style="font-size:14px">with node/mongodb</small></h1>
 
     <div class="form-floating">
       <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{ old('email') }}">
@@ -99,7 +99,7 @@
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">Are you a new user? <a href="{{route('sqlsignup.get')}}">Sign Up</a></p>
+    <p class="mt-5 mb-3 text-muted">Are you a new user? <a href="{{route('signup.get')}}">Sign Up</a></p>
   </form>
 </main>
   </body>

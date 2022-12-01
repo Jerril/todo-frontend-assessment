@@ -18,16 +18,27 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Route::get('/login-sql', [AuthController::class, 'login_form'])->name('sqllogin.get');
-Route::post('/login-sql', [AuthController::class, 'login_post'])->name('sqllogin.post');
-Route::get('/signup-sql', [AuthController::class, 'signup_form'])->name('sqlsignup.get');
-Route::post('/signup-sql', [AuthController::class, 'signup_post'])->name('sqlsignup.post');
+Route::get('/login-sql', [AuthController::class, 'sqllogin_form'])->name('sqllogin.get');
+Route::post('/login-sql', [AuthController::class, 'sqllogin_post'])->name('sqllogin.post');
+Route::get('/signup-sql', [AuthController::class, 'sqlsignup_form'])->name('sqlsignup.get');
+Route::post('/signup-sql', [AuthController::class, 'sqlsignup_post'])->name('sqlsignup.post');
 
-// Laravel Signup
 Route::middleware('auth')->group(function() {
     Route::get('/sql-dashboard', fn() => view('sql-dashboard'))->name('sql.dashboard');
     Route::get('/sql-logout', [AuthController::class, 'sqlLogout'])->name('sql.logout');
 });
 
-// TODO Routes
+
+// Node Powered Endpoints
+Route::get('/login', [AuthController::class, 'login_form'])->name('login.get');
+Route::post('/login', [AuthController::class, 'login_post'])->name('login.post');
+Route::get('/signup', [AuthController::class, 'signup_form'])->name('signup.get');
+Route::post('/signup', [AuthController::class, 'signup_post'])->name('signup.post');
+
+// Protected endpoints
+// Route::middleware('hassession')->group(function(){
+
+// });
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+// Todo Routes
 Route::get('/dashboard', fn() => view('layouts.main'))->name('dashboard');

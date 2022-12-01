@@ -1,3 +1,6 @@
+@if (!Session::has('token'))
+    {{ back() }}
+@endif
 <!doctype html>
 <html lang="en">
     <head>
@@ -14,6 +17,7 @@
 
     <body>
         <div class="row d-flex justify-content-center container">
+            <a href="{{route('logout')}}" class="text-light">Logout</a>
             <div class="col-md-8">
               <div class="card-hover-shadow-2x mb-3 card">
                 <div class="card-header-tab card-header">
