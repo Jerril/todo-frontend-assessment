@@ -35,10 +35,9 @@ Route::post('/login', [AuthController::class, 'login_post'])->name('login.post')
 Route::get('/signup', [AuthController::class, 'signup_form'])->name('signup.get');
 Route::post('/signup', [AuthController::class, 'signup_post'])->name('signup.post');
 
-// Protected endpoints
-// Route::middleware('hassession')->group(function(){
-
-// });
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-// Todo Routes
-Route::get('/dashboard', fn() => view('layouts.main'))->name('dashboard');
+// Protected Routes
+Route::middleware('loggedin')->group(function(){
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    // Todo Routes
+    Route::get('/dashboard', fn() => view('layouts.main'))->name('dashboard');
+});
