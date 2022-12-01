@@ -99,8 +99,13 @@ class AuthController extends Controller
         // Create a session
         session(['token' => $response['token'], 'user' => $response['user']]);
 
+        // Get all the tasks
+        $data = Http::withToken($response['token'])->get('https://todo-api-assessment-production.up.railway.app/todo');
+        $todos = $data['todos'];
+
         // Redirect to dashboard
-        return redirect()->route('dashboard');
+        // return redirect()->route('dashboard');
+        return view('layouts.main', compact('todos'));
     }
 
     public function signup_form()
@@ -122,8 +127,6 @@ class AuthController extends Controller
             "password" => $request->password,
         ]);
 
-        // return $response->body();
-
         if($response->failed()){
             // Return back with error
             return back()->withErrors([
@@ -141,13 +144,6 @@ class AuthController extends Controller
         $request->session()->flush();
 
         return redirect()->route('login.get');
-        // Auth::logout();
-
-        // $request->session()->invalidate();
-
-        // $request->session()->regenerateToken();
-
-        // return redirect()->route('sqllogin.get')->with('msg', "Logout successful!");
     }
 
 }
