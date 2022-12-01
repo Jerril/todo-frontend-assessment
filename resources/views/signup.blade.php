@@ -93,7 +93,8 @@
         </div>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
-        <p class="mt-5 mb-3 text-muted">Are you a registered user? <a href="{{route('sqllogin.get')}}">Login</a></p>
+        <p class="mt-3 mb-3 text-muted">Are you a registered user? <a href="{{route('sqllogin.get')}}">Login</a></p>
+        <p class="mt-5 mb-3 text-muted"><a href="{{route('index')}}">&larr; Go home</a></p>
     </form>
     </main>
 
